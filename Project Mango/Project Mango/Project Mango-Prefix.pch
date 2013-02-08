@@ -1,0 +1,30 @@
+//
+// Prefix header for all source files of the 'Project Mango' target in the 'Project Mango' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
+
+#import "FTAppDelegate.h"
+
+#define INTERFACE_IS_PAD     (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) 
+#define INTERFACE_IS_PHONE   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) 
+#define INTERFACE_IS_PORTRAIT   (UIInterfaceOrientationIsPortrait( [[UIApplication sharedApplication] statusBarOrientation]))
+
+#define APPLICATION_DELEGATE ((FTAppDelegate *) [[UIApplication sharedApplication] delegate])
+#define kUUIDKeyDefaults @"__UNIQUE_DEVICE_IDENTIFIER__"
+#define kIDCardBarcodeDefault @"yeayeaBARCODEEjeffbarg"
+
+#define kViewBackgroundColor [UIColor colorWithWhite: 0.90 alpha: 1.000]
+
+
+#import "ZBarSDK.h"
