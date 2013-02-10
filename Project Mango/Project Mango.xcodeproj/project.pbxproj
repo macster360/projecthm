@@ -127,7 +127,6 @@
 		7BE19BBA15EF0C3C00EDCAFC /* studentschedules2012.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BE19BB915EF0C3C00EDCAFC /* studentschedules2012.json */; };
 		7BE19BC115EF286800EDCAFC /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BE19BC015EF286800EDCAFC /* Student.m */; };
 		E336D48515D5827200B69B6A /* JMClassDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E336D48415D5827200B69B6A /* JMClassDetailViewController.m */; };
-		E351FAAF16C482D300E97D39 /* GitHubTest.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E351FAAE16C482D300E97D39 /* GitHubTest.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,7 +289,6 @@
 		7BE19BC015EF286800EDCAFC /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Student.m; path = "Core Data/Student.m"; sourceTree = "<group>"; };
 		E336D48315D5827200B69B6A /* JMClassDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JMClassDetailViewController.h; path = Schedules/JMClassDetailViewController.h; sourceTree = "<group>"; };
 		E336D48415D5827200B69B6A /* JMClassDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JMClassDetailViewController.m; path = Schedules/JMClassDetailViewController.m; sourceTree = "<group>"; };
-		E351FAAE16C482D300E97D39 /* GitHubTest.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = GitHubTest.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,7 +352,6 @@
 		7B723D5115BDDA6E002F2D2A = {
 			isa = PBXGroup;
 			children = (
-				E351FAAE16C482D300E97D39 /* GitHubTest.rtf */,
 				7BBD591815E5C6C100B3B169 /* SystemConfiguration.framework */,
 				7BBD591615E5C6B600B3B169 /* StoreKit.framework */,
 				7BBD591415E5C67800B3B169 /* MobileCoreServices.framework */,
@@ -817,7 +814,6 @@
 				7BAB46D915D5BD2F00A76D7E /* notesdone.png in Resources */,
 				7BAB46DA15D5BD2F00A76D7E /* notesdoneactive.png in Resources */,
 				7BE19BBA15EF0C3C00EDCAFC /* studentschedules2012.json in Resources */,
-				E351FAAF16C482D300E97D39 /* GitHubTest.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
