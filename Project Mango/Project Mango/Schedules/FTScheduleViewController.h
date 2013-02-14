@@ -10,7 +10,7 @@
 
 @class Student;
 
-@interface FTScheduleViewController : UITableViewController
+@interface FTScheduleViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) Student *student;
