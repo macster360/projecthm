@@ -495,6 +495,7 @@ struct JKEncodeState {
 };
 
 // This is a JSONKit private class.
+@end
 @interface JKSerializer : NSObject {
     JKEncodeState *encodeState;
 }
@@ -693,7 +694,7 @@ static JKArray *_JKArrayCreate(id *objects, NSUInteger count, BOOL mutableCollec
         array->capacity = count;
         array->count    = count;
         if(JK_EXPECT_F((array->objects = (id *)malloc(sizeof(id) * array->capacity)) == NULL)) { [array autorelease]; return(NULL); }
-        memcpy(array->objects, objects, array->capacity * sizeof(id));
+        memcpy((void*)array->objects, objects, array->capacity * sizeof(id));
         array->mutations = (mutableCollection == NO) ? 0UL : 1UL;
     }
     return(array);
@@ -711,7 +712,7 @@ static void _JKArrayInsertObjectAtIndex(JKArray *array, id newObject, NSUInteger
         memset(&array->objects[array->count], 0, sizeof(id) * (array->capacity - array->count));
     }
     array->count++;
-    if((objectIndex + 1UL) < array->count) { memmove(&array->objects[objectIndex + 1UL], &array->objects[objectIndex], sizeof(id) * ((array->count - 1UL) - objectIndex)); array->objects[objectIndex] = NULL; }
+    if((objectIndex + 1UL) < array->count) { memmove((void*)&array->objects[objectIndex + 1UL], &array->objects[objectIndex], sizeof(id) * ((array->count - 1UL) - objectIndex)); array->objects[objectIndex] = NULL; }
     array->objects[objectIndex] = newObject;
 }
 
@@ -719,7 +720,7 @@ static void _JKArrayInsertObjectAtIndex(JKArray *array, id newObject, NSUInteger
 static void _JKArrayReplaceObjectAtIndexWithObject(JKArray *array, NSUInteger objectIndex, id newObject) {
     NSCParameterAssert((array != NULL) && (array->objects != NULL) && (array->count <= array->capacity) && (objectIndex < array->count) && (array->objects[objectIndex] != NULL) && (newObject != NULL));
     if(!((array != NULL) && (array->objects != NULL) && (objectIndex < array->count) && (array->objects[objectIndex] != NULL) && (newObject != NULL))) { [newObject autorelease]; return; }
-    CFRelease(array->objects[objectIndex]);
+    CFRelease(( CFTypeRef)(array->objects[objectIndex]));
     array->objects[objectIndex] = NULL;
     array->objects[objectIndex] = newObject;
 }
@@ -727,9 +728,9 @@ static void _JKArrayReplaceObjectAtIndexWithObject(JKArray *array, NSUInteger ob
 static void _JKArrayRemoveObjectAtIndex(JKArray *array, NSUInteger objectIndex) {
     NSCParameterAssert((array != NULL) && (array->objects != NULL) && (array->count > 0UL) && (array->count <= array->capacity) && (objectIndex < array->count) && (array->objects[objectIndex] != NULL));
     if(!((array != NULL) && (array->objects != NULL) && (array->count > 0UL) && (array->count <= array->capacity) && (objectIndex < array->count) && (array->objects[objectIndex] != NULL))) { return; }
-    CFRelease(array->objects[objectIndex]);
+    CFRelease(( CFTypeRef)(array->objects[objectIndex]));
     array->objects[objectIndex] = NULL;
-    if((objectIndex + 1UL) < array->count) { memmove(&array->objects[objectIndex], &array->objects[objectIndex + 1UL], sizeof(id) * ((array->count - 1UL) - objectIndex)); array->objects[array->count - 1UL] = NULL; }
+    if((objectIndex + 1UL) < array->count) { memmove((void*)&array->objects[objectIndex], &array->objects[objectIndex + 1UL], sizeof(id) * ((array->count - 1UL) - objectIndex)); array->objects[array->count - 1UL] = NULL; }
     array->count--;
 }
 
@@ -737,7 +738,7 @@ static void _JKArrayRemoveObjectAtIndex(JKArray *array, NSUInteger objectIndex) 
 {
     if(JK_EXPECT_T(objects != NULL)) {
         NSUInteger atObject = 0UL;
-        for(atObject = 0UL; atObject < count; atObject++) { if(JK_EXPECT_T(objects[atObject] != NULL)) { CFRelease(objects[atObject]); objects[atObject] = NULL; } }
+        for(atObject = 0UL; atObject < count; atObject++) { if(JK_EXPECT_T(objects[atObject] != NULL)) { CFRelease(( CFTypeRef)(objects[atObject])); objects[atObject] = NULL; } }
         free(objects); objects = NULL;
     }
     
@@ -756,7 +757,7 @@ static void _JKArrayRemoveObjectAtIndex(JKArray *array, NSUInteger objectIndex) 
     if((objectsPtr     == NULL)  && (NSMaxRange(range) > 0UL))   { [NSException raise:NSRangeException format:@"*** -[%@ %@]: pointer to objects array is NULL but range length is %lu", NSStringFromClass([self class]), NSStringFromSelector(_cmd), (unsigned long)NSMaxRange(range)];        }
     if((range.location >  count) || (NSMaxRange(range) > count)) { [NSException raise:NSRangeException format:@"*** -[%@ %@]: index (%lu) beyond bounds (%lu)",                          NSStringFromClass([self class]), NSStringFromSelector(_cmd), (unsigned long)NSMaxRange(range), (unsigned long)count]; }
 #ifndef __clang_analyzer__
-    memcpy(objectsPtr, objects + range.location, range.length * sizeof(id));
+    memcpy((void*)objectsPtr, objects + range.location, range.length * sizeof(id));
 #endif
 }
 
@@ -848,13 +849,13 @@ static void _JKArrayRemoveObjectAtIndex(JKArray *array, NSUInteger objectIndex) 
 {
     NSParameterAssert(initDictionary != NULL);
     if((self = [super init]) == NULL) { return(NULL); }
-    if((collection = (id)CFRetain(initDictionary)) == NULL) { [self autorelease]; return(NULL); }
+    if((collection = ( id)CFRetain(initDictionary)) == NULL) { [self autorelease]; return(NULL); }
     return(self);
 }
 
 - (void)dealloc
 {
-    if(collection != NULL) { CFRelease(collection); collection = NULL; }
+    if(collection != NULL) { CFRelease(( CFTypeRef)(collection)); collection = NULL; }
     [super dealloc];
 }
 
@@ -959,8 +960,8 @@ static JKDictionary *_JKDictionaryCreate(id *keys, NSUInteger *keyHashes, id *ob
     if(JK_EXPECT_T(entry != NULL)) {
         NSUInteger atEntry = 0UL;
         for(atEntry = 0UL; atEntry < capacity; atEntry++) {
-            if(JK_EXPECT_T(entry[atEntry].key    != NULL)) { CFRelease(entry[atEntry].key);    entry[atEntry].key    = NULL; }
-            if(JK_EXPECT_T(entry[atEntry].object != NULL)) { CFRelease(entry[atEntry].object); entry[atEntry].object = NULL; }
+            if(JK_EXPECT_T(entry[atEntry].key    != NULL)) { CFRelease(( CFTypeRef)(entry[atEntry].key));    entry[atEntry].key    = NULL; }
+            if(JK_EXPECT_T(entry[atEntry].object != NULL)) { CFRelease(( CFTypeRef)(entry[atEntry].object)); entry[atEntry].object = NULL; }
         }
         
         free(entry); entry = NULL;
@@ -981,8 +982,8 @@ static NSUInteger _JKDictionaryCapacity(JKDictionary *dictionary) {
 
 static void _JKDictionaryRemoveObjectWithEntry(JKDictionary *dictionary, JKHashTableEntry *entry) {
     NSCParameterAssert((dictionary != NULL) && (entry != NULL) && (entry->key != NULL) && (entry->object != NULL) && (dictionary->count > 0UL) && (dictionary->count <= dictionary->capacity));
-    CFRelease(entry->key);    entry->key    = NULL;
-    CFRelease(entry->object); entry->object = NULL;
+    CFRelease(( CFTypeRef)(entry->key));    entry->key    = NULL;
+    CFRelease(( CFTypeRef)(entry->object)); entry->object = NULL;
     entry->keyHash = 0UL;
     dictionary->count--;
     // In order for certain invariants that are used to speed up the search for a particular key, we need to "re-add" all the entries in the hash table following this entry until we hit a NULL entry.
@@ -1017,8 +1018,8 @@ static void _JKDictionaryAddObject(JKDictionary *dictionary, NSUInteger keyHash,
     }
     
     // We should never get here.  If we do, we -release the key / object because it's our responsibility.
-    CFRelease(key);
-    CFRelease(object);
+    CFRelease(( CFTypeRef)(key));
+    CFRelease(( CFTypeRef)(object));
 }
 
 - (NSUInteger)count
@@ -1029,11 +1030,11 @@ static void _JKDictionaryAddObject(JKDictionary *dictionary, NSUInteger keyHash,
 static JKHashTableEntry *_JKDictionaryHashTableEntryForKey(JKDictionary *dictionary, id aKey) {
     NSCParameterAssert((dictionary != NULL) && (dictionary->entry != NULL) && (dictionary->count <= dictionary->capacity));
     if((aKey == NULL) || (dictionary->capacity == 0UL)) { return(NULL); }
-    NSUInteger        keyHash = CFHash(aKey), keyEntry = (keyHash % dictionary->capacity), idx = 0UL;
+    NSUInteger        keyHash = CFHash(( CFTypeRef)(aKey)), keyEntry = (keyHash % dictionary->capacity), idx = 0UL;
     JKHashTableEntry *atEntry = NULL;
     for(idx = 0UL; idx < dictionary->capacity; idx++) {
         atEntry = &dictionary->entry[(keyEntry + idx) % dictionary->capacity];
-        if(JK_EXPECT_T(atEntry->keyHash == keyHash) && JK_EXPECT_T(atEntry->key != NULL) && ((atEntry->key == aKey) || CFEqual(atEntry->key, aKey))) { NSCParameterAssert(atEntry->object != NULL); return(atEntry); break; }
+        if(JK_EXPECT_T(atEntry->keyHash == keyHash) && JK_EXPECT_T(atEntry->key != NULL) && ((atEntry->key == aKey) || CFEqual(( CFTypeRef)(atEntry->key), aKey))) { NSCParameterAssert(atEntry->object != NULL); return(atEntry); break; }
         if(JK_EXPECT_F(atEntry->key == NULL)) { NSCParameterAssert(atEntry->object == NULL); return(NULL); break; } // If the key was in the table, we would have found it by now.
     }
     return(NULL);
@@ -1088,7 +1089,7 @@ static JKHashTableEntry *_JKDictionaryHashTableEntryForKey(JKDictionary *diction
     aKey     = [aKey     copy];   // Why on earth would clang complain that this -copy "might leak",
     anObject = [anObject retain]; // but this -retain doesn't!?
 #endif // __clang_analyzer__
-    _JKDictionaryAddObject(self, CFHash(aKey), aKey, anObject);
+    _JKDictionaryAddObject(self, CFHash(( CFTypeRef)(aKey)), aKey, anObject);
     mutations = (mutations == NSUIntegerMax) ? 1UL : mutations + 1UL;
 }
 
@@ -1959,7 +1960,7 @@ static id json_parse_it(JKParseState *parseState) {
         if((JK_EXPECT_T(stopParsing == 0)) && (JK_EXPECT_T((stopParsing = jk_parse_next_token(parseState)) == 0))) {
             switch(parseState->token.type) {
                 case JKTokenTypeArrayBegin:
-                case JKTokenTypeObjectBegin: parsedObject = [(id)jk_object_for_token(parseState) autorelease]; stopParsing = 1; break;
+                case JKTokenTypeObjectBegin: parsedObject = [( id)jk_object_for_token(parseState) autorelease]; stopParsing = 1; break;
                 default:                     jk_error(parseState, @"Expected either '[' or '{'.");             stopParsing = 1; break;
             }
         }
@@ -2541,7 +2542,7 @@ JK_STATIC_INLINE JKHash jk_encode_object_hash(void *objectPtr) {
 static int jk_encode_add_atom_to_buffer(JKEncodeState *encodeState, void *objectPtr) {
     NSCParameterAssert((encodeState != NULL) && (encodeState->atIndex < encodeState->stringBuffer.bytes.length) && (objectPtr != NULL));
     
-    id     object          = (id)objectPtr, encodeCacheObject = object;
+    id     object          = ( id)objectPtr, encodeCacheObject = object;
     int    isClass         = JKClassUnknown;
     size_t startingAtIndex = encodeState->atIndex;
     
@@ -2884,7 +2885,7 @@ rerunAfterClassFormatter:;
     if(((encodeOption & JKEncodeOptionCollectionObj) != 0UL) && (([object isKindOfClass:[NSArray  class]] == NO) && ([object isKindOfClass:[NSDictionary class]] == NO))) { jk_encode_error(encodeState, @"Unable to serialize object class %@, expected a NSArray or NSDictionary.", NSStringFromClass([object class])); goto errorExit; }
     if(((encodeOption & JKEncodeOptionStringObj)     != 0UL) &&  ([object isKindOfClass:[NSString class]] == NO))                                                         { jk_encode_error(encodeState, @"Unable to serialize object class %@, expected a NSString.", NSStringFromClass([object class])); goto errorExit; }
     
-    if(jk_encode_add_atom_to_buffer(encodeState, object) == 0) {
+    if(jk_encode_add_atom_to_buffer(encodeState, ( void *)(object)) == 0) {
         BOOL stackBuffer = ((encodeState->stringBuffer.flags & JKManagedBufferMustFree) == 0UL) ? YES : NO;
         
         if((encodeState->atIndex < 2UL))
@@ -3074,4 +3075,3 @@ errorExit:
 
 #endif // __BLOCKS__
 
-@end
