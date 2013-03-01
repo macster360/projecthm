@@ -128,6 +128,7 @@
 		7BBD591D15E698E500B3B169 /* JBCommunityPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBD591C15E698E500B3B169 /* JBCommunityPhotosViewController.m */; };
 		7BE19BBA15EF0C3C00EDCAFC /* studentschedules2012.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BE19BB915EF0C3C00EDCAFC /* studentschedules2012.json */; };
 		7BE19BC115EF286800EDCAFC /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BE19BC015EF286800EDCAFC /* Student.m */; };
+		D47865C116E026CE00909884 /* Ballsack.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D47865C016E026CE00909884 /* Ballsack.storyboard */; };
 		E336D48515D5827200B69B6A /* JMClassDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E336D48415D5827200B69B6A /* JMClassDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -292,6 +293,7 @@
 		7BE19BB915EF0C3C00EDCAFC /* studentschedules2012.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = studentschedules2012.json; sourceTree = "<group>"; };
 		7BE19BBF15EF286800EDCAFC /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Student.h; path = "Core Data/Student.h"; sourceTree = "<group>"; };
 		7BE19BC015EF286800EDCAFC /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Student.m; path = "Core Data/Student.m"; sourceTree = "<group>"; };
+		D47865C016E026CE00909884 /* Ballsack.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ballsack.storyboard; sourceTree = "<group>"; };
 		E336D48315D5827200B69B6A /* JMClassDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JMClassDetailViewController.h; path = Schedules/JMClassDetailViewController.h; sourceTree = "<group>"; };
 		E336D48415D5827200B69B6A /* JMClassDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JMClassDetailViewController.m; path = Schedules/JMClassDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -550,6 +552,7 @@
 			children = (
 				7B95E4C015BF0E580082E724 /* Project_Mango.xcdatamodeld */,
 				7BE19BBF15EF286800EDCAFC /* Student.h */,
+				D47865C016E026CE00909884 /* Ballsack.storyboard */,
 				7BE19BC015EF286800EDCAFC /* Student.m */,
 				7B36978C15BF1FB9003F84BC /* Course.h */,
 				7B36978D15BF1FB9003F84BC /* Course.m */,
@@ -823,6 +826,7 @@
 				7BAB46DA15D5BD2F00A76D7E /* notesdoneactive.png in Resources */,
 				7BE19BBA15EF0C3C00EDCAFC /* studentschedules2012.json in Resources */,
 				06F6091E16DC60810078A1D6 /* Default-568h@2x.png in Resources */,
+				D47865C116E026CE00909884 /* Ballsack.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
