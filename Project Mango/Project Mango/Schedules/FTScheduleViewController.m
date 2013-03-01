@@ -82,9 +82,13 @@
     self.title = [NSString stringWithFormat:@"Day %i", _day==0?10:_day];
 
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Student"];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"unitID == %i", [APPLICATION_DELEGATE.user.unitID integerValue]]];
+    NSString *idCard = [[NSUserDefaults standardUserDefaults] objectForKey:kIDCardBarcodeDefault];
+    
+    [request setPredicate:[NSPredicate predicateWithFormat:@"unitID == %s", @"12120"]];
     student = [[self.managedObjectContext executeFetchRequest:request error:nil] lastObject];
-    NSLog(@"%@", student);
+    NSLog(@"STudent: %@", student);
+    NSLog(@"%@", self.managedObjectContext);
+    
     NSMutableDictionary *mDict = [[NSMutableDictionary alloc] init];
     for (Course *course in student.courses) {
         if ([course.days rangeOfString:dayStr].location != NSNotFound) {
