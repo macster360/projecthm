@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="wZr-Is-fLP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="wZr-Is-fLP">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -219,7 +219,7 @@
                                     <constraint firstAttribute="width" constant="197" id="Xq2-50-Pmt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="[When Scan is Complete]">
+                                <state key="normal" title="Scan">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -230,13 +230,35 @@
                                     <segue destination="lY8-x7-VIX" kind="modal" id="ito-Cx-87W"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gRh-ea-pce">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="225" id="wSB-iw-tpM"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="No Barcode Scanned" translatesAutoresizingMaskIntoConstraints="NO" id="Tcg-Oh-l6H">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="174" id="VFZ-dO-bnh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="J4b-gc-37W" secondAttribute="bottom" constant="92" id="NFe-5m-7m8"/>
-                            <constraint firstItem="J4b-gc-37W" firstAttribute="leading" secondItem="fuF-ib-qbY" secondAttribute="leading" constant="54" id="cTg-4f-NrB"/>
+                            <constraint firstItem="Tcg-Oh-l6H" firstAttribute="leading" secondItem="fuF-ib-qbY" secondAttribute="leading" type="default" id="AHh-Pp-DQx"/>
+                            <constraint firstItem="gRh-ea-pce" firstAttribute="top" secondItem="fuF-ib-qbY" secondAttribute="top" type="default" id="CZC-RP-hxt"/>
+                            <constraint firstItem="Tcg-Oh-l6H" firstAttribute="trailing" secondItem="fuF-ib-qbY" secondAttribute="trailing" type="default" id="DsB-U1-dEF"/>
+                            <constraint firstItem="gRh-ea-pce" firstAttribute="trailing" secondItem="fuF-ib-qbY" secondAttribute="trailing" type="default" id="FsX-Df-nqg"/>
+                            <constraint firstItem="J4b-gc-37W" firstAttribute="top" secondItem="Tcg-Oh-l6H" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Gjk-yh-DL6"/>
+                            <constraint firstAttribute="bottom" secondItem="J4b-gc-37W" secondAttribute="bottom" constant="11" id="K6G-uv-6We"/>
+                            <constraint firstItem="gRh-ea-pce" firstAttribute="leading" secondItem="fuF-ib-qbY" secondAttribute="leading" type="default" id="YfE-bi-3kR"/>
+                            <constraint firstItem="Tcg-Oh-l6H" firstAttribute="centerX" secondItem="J4b-gc-37W" secondAttribute="centerX" type="default" id="hXy-eX-jym"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="view" destination="fuF-ib-qbY" id="heC-va-a9E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GAa-pX-CfC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -254,6 +276,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="BJk-zw-zxG"/>
+        <segue reference="lK9-6V-53z"/>
     </inferredMetricsTieBreakers>
 </document>
