@@ -17,7 +17,6 @@
 #import "Student.h"
 
 #import "SBJson.h"
-#import <Parse/Parse.h>
 
 @implementation FTAppDelegate
 
@@ -32,42 +31,34 @@
     [self setupAppearances];
     [self initializeData];
     [self setupUUID];
-        
-    [Parse setApplicationId:@"K8JTOK5DVHK7l2rOM1AGyRczdVtkgqkLtNT5SMqD"
-                  clientKey:@"ZXHpAFQv36eIk0LW9rhEE04XrslL4YHIfPPXkjRT"];
-
-        
+    
+    
+    
+    
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
      UIRemoteNotificationTypeAlert|
      UIRemoteNotificationTypeSound];
-
-    PFFile *imgFile = [PFFile fileWithData:[NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"done" withExtension:@"png"]]];
-    [imgFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *err) {
-        PFObject *obj = [PFObject objectWithClassName:@"ImageObj"];
-        [obj setObject:imgFile forKey:@"ImageFile"];
-        [obj saveInBackground];
-    }];
     
-//    PFUser *user = [PFUser user];
-//    user.username = @"Jeff Barg";
-//    user.password = @"hello";
-//    user.email = @"jeffrey_barg@horacemann.org";
-//        
-//    // other fields can be set just like with PFObject
-//    [user setObject:@"415-392-0202" forKey:@"phone"];
-//
-//    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (!error) {
-//                // Hooray! Let them use the app now.
-//            [PFPush subscribeToChannelInBackground:[user username]];
-//
-//        } else {
-//            NSString *errorString = [[error userInfo] objectForKey:@"error"];
-//            NSLog(@"%@", errorString);
-//            // Show the errorString somewhere and let the user try again.
-//        }
-//    }];
-
+    //    PFUser *user = [PFUser user];
+    //    user.username = @"Jeff Barg";
+    //    user.password = @"hello";
+    //    user.email = @"jeffrey_barg@horacemann.org";
+    //
+    //    // other fields can be set just like with PFObject
+    //    [user setObject:@"415-392-0202" forKey:@"phone"];
+    //
+    //    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    //        if (!error) {
+    //                // Hooray! Let them use the app now.
+    //            [PFPush subscribeToChannelInBackground:[user username]];
+    //
+    //        } else {
+    //            NSString *errorString = [[error userInfo] objectForKey:@"error"];
+    //            NSLog(@"%@", errorString);
+    //            // Show the errorString somewhere and let the user try again.
+    //        }
+    //    }];
+    
     
     //Authenticate
     
@@ -95,15 +86,15 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.rootViewController = tabBarController;
-     
+    
     self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
     
     UINavigationController *authNavController = [[UINavigationController alloc] initWithRootViewController:authViewController];
-        
+    
     //[tabBarController presentViewController:authNavController animated:NO completion:^{}];
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Student"];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"unitID == %i", 12040]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"idCardNumber == %@", [[NSUserDefaults standardUserDefaults] objectForKey:kIDCardBarcodeDefault]]];
     NSArray * ls = [self.managedObjectContext executeFetchRequest:request error:nil];
     self.user = ((Student *) [ls lastObject]);
     return YES;
@@ -111,19 +102,6 @@
 
 #pragma mark - Push Notifications
 
-- (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
-{
-    // Tell Parse about the device token.
-    [PFPush storeDeviceToken:newDeviceToken];
-    // Subscribe to the global broadcast channel.
-    [PFPush subscribeToChannelInBackground:@""];
-}
-
-- (void)application:(UIApplication *)application 
-didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
-}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -134,7 +112,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -160,11 +138,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
-        } 
+        }
     }
 }
 
@@ -214,94 +192,78 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         }
         
         Course *course = [courseIDtoCourseDict objectForKey:extractIntegerFromDict(@"SectionX Record Num", dict)];
+        
         if (course == nil) {
             NSString *meetingTime = extractStringFromDict(@"Meeting Time", dict);
-            NSString *decimals = @"1234567890";
-            BOOL isLab = FALSE;
-            
-            NSString *coursePeriods = nil;
-            for (int i = 0; i < [meetingTime length]; i ++) {
-                NSString *cStr = [meetingTime substringWithRange:NSMakeRange(i, 1)];
-                if ([decimals rangeOfString:cStr].location == NSNotFound) {
-                    course = [NSEntityDescription insertNewObjectForEntityForName:@"Course" inManagedObjectContext:self.managedObjectContext];
-                    coursePeriods = @"";
-                    [course setDays:@"1234567890"];
-                    [course setPeriod:cStr];
-                    
-                    if (!isLab) {
-                        [course setName:extractStringFromDict(@"Course Name", dict)];
-                        [courseIDtoCourseDict setObject:course forKey:extractIntegerFromDict(@"SectionX Record Num", dict)];
-                        isLab = TRUE;
-                    } else {
-                        [course setName:[NSString stringWithFormat:@"%@%@",extractStringFromDict(@"Course Name", dict), @" Lab"]];
-                    }
-                    
-                    [course setSize:extractIntegerFromDict(@"Current Size", dict)];
-                    [course setRoom:extractStringFromDict(@"Room", dict)];
-                    [course setCourseNumber:extractIntegerFromDict(@"Course Number", dict)];
-                    [course setSectionXNumber:extractIntegerFromDict(@"SectionX Record Num", dict)];
-                    
-                    [teacher addCoursesObject:course];
-                    [student addCoursesObject:course];
-                } else {
-                    coursePeriods = [NSString stringWithFormat:@"%@%@", coursePeriods, cStr];
-                    [course setDays:coursePeriods];
-                }
+            if ([meetingTime isEqualToString:@""]) {
+                continue;
             }
+            course = [NSEntityDescription insertNewObjectForEntityForName:@"Course" inManagedObjectContext:self.managedObjectContext];
+            
+            [course setName:extractStringFromDict(@"Course Name", dict)];
+            [course setDays:@"1234567890"];
+            
+            NSLog(@"%@", meetingTime);
+            if (![meetingTime isEqualToString:@""]) {
+                [course setPeriod:[meetingTime substringToIndex:1]];
+            }
+            [course setSize:extractIntegerFromDict(@"Current Size", dict)];
+            [course setRoom:extractStringFromDict(@"Room", dict)];
+            [course setCourseNumber:extractIntegerFromDict(@"Course Number", dict)];
+            [course setSectionXNumber:extractIntegerFromDict(@"SectionX Record Num", dict)];
+            
+            
+            [teacher addCoursesObject:course];
+            [student addCoursesObject:course];
+            NSLog(@"%@", student);
+            [courseIDtoCourseDict setObject:course forKey:extractIntegerFromDict(@"SectionX Record Num", dict)];
             
         }
+    }
+    
+    for (NSDictionary *dict in objects) {
+        Course *course = [courseIDtoCourseDict objectForKey:extractIntegerFromDict(@"SectionX Record Num", dict)];
+        if ([extractStringFromDict(@"Meeting Time", dict) isEqualToString:@""]) continue;
         
-
+        if (course == nil) {
+            course = [NSEntityDescription insertNewObjectForEntityForName:@"Course" inManagedObjectContext:self.managedObjectContext];
+            
+            [course setName:extractStringFromDict(@"Course Name", dict)];
+            [course setSize:extractIntegerFromDict(@"Current Size", dict)];
+            [course setRoom:extractStringFromDict(@"Meeting Time", dict)];
+            [course setCourseNumber:extractIntegerFromDict(@"Course Number", dict)];
+            [course setPeriod:[extractStringFromDict(@"Meeting Time", dict) substringWithRange:NSMakeRange(0, 1)]];
+            
+            [courseIDtoCourseDict setObject:course forKey:extractIntegerFromDict(@"SectionX Record Num", dict)];
+        }
+        
+        Teacher *teacher = [staffIDToTeachersDict objectForKey:extractStringFromDict(@"Staff ID", dict)];
+        if (teacher == nil) {
+            teacher = [NSEntityDescription insertNewObjectForEntityForName:@"Teacher" inManagedObjectContext:self.managedObjectContext];
+            [teacher setName:convertFormalName(extractStringFromDict(@"Staff Name", dict))];
+            [teacher setStaffID:extractStringFromDict(@"Staff ID", dict)];
+            
+            [staffIDToTeachersDict setObject:teacher forKey:extractStringFromDict(@"Staff ID", dict)];
+        }
+        
+        [teacher addCoursesObject:course];
+        
+        Student *student = [APIDToStudentDict objectForKey:extractIntegerFromDict(@"APID", dict)];
+        if (student == nil) {
+            student = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:self.managedObjectContext];
+            [student setName:convertFormalName(extractStringFromDict(@"Formal Name", dict))];
+            [student setUnitID:extractIntegerFromDict(@"APID", dict)];
+            [student setIdCardNumber:extractStringFromDict(@"Unique ID", dict)];
+            
+            [APIDToStudentDict setObject:student forKey:extractIntegerFromDict(@"APID", dict)];
+        }
+        
+        [student addCoursesObject:course];
         
         
     }
-
-//    for (NSDictionary *dict in objects) {
-//        Course *course = [courseIDtoCourseDict objectForKey:extractIntegerFromDict(@"SectionX Record Num", dict)];
-//        if ([extractStringFromDict(@"Meeting Time", dict) isEqualToString:@""]) continue;
-//        
-//        if (course == nil) {
-//            course = [NSEntityDescription insertNewObjectForEntityForName:@"Course" inManagedObjectContext:self.managedObjectContext];
-//            
-//            [course setName:extractStringFromDict(@"Course Name", dict)];
-//            [course setSize:extractIntegerFromDict(@"Current Size", dict)];
-//            [course setRoom:extractStringFromDict(@"Meeting Time", dict)];
-//            [course setCourseNumber:extractIntegerFromDict(@"Course Number", dict)];
-//            [course setPeriod:[extractStringFromDict(@"Meeting Time", dict) substringWithRange:NSMakeRange(0, 1)]];
-//            
-//            [courseIDtoCourseDict setObject:course forKey:extractIntegerFromDict(@"SectionX Record Num", dict)];
-//        }
-//        
-//        Teacher *teacher = [staffIDToTeachersDict objectForKey:extractStringFromDict(@"Staff ID", dict)];
-//        if (teacher == nil) {
-//            teacher = [NSEntityDescription insertNewObjectForEntityForName:@"Teacher" inManagedObjectContext:self.managedObjectContext];
-//            [teacher setName:convertFormalName(extractStringFromDict(@"Staff Name", dict))];
-//            [teacher setStaffID:extractStringFromDict(@"Staff ID", dict)];
-//            
-//            [staffIDToTeachersDict setObject:teacher forKey:extractStringFromDict(@"Staff ID", dict)];
-//        }
-//        
-//        [teacher addCoursesObject:course];
-//        
-//        Student *student = [APIDToStudentDict objectForKey:extractIntegerFromDict(@"APID", dict)];
-//        if (student == nil) {
-//            student = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:self.managedObjectContext];
-//            [student setName:convertFormalName(extractStringFromDict(@"Formal Name", dict))];
-//            [student setUnitID:extractIntegerFromDict(@"APID", dict)];
-//            [student setIdCardNumber:extractStringFromDict(@"Unique ID", dict)];
-//            
-//            [APIDToStudentDict setObject:student forKey:extractIntegerFromDict(@"APID", dict)];
-//        }
-//        
-//        [student addCoursesObject:course];
-//        
-//        
-//    }
-
-    
     
 }
-
 NSNumber * extractIntegerFromDict (NSString *key, NSDictionary * dict) {
     NSInteger val = [[dict valueForKey:key] integerValue];
     return [[NSNumber alloc] initWithInteger:val];
@@ -328,12 +290,12 @@ NSString * extractStringFromDict(NSString *key, NSDictionary * dict) {
 }
 
 NSString *convertFormalName(NSString * formalName) {
-//    NSInteger index = [formalName rangeOfString:@";"].location;
-//    
-//    NSString *lastName = [formalName substringToIndex:index];
-//    NSString *firstName = [formalName substringFromIndex:index + 2];
-//    
-//    return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    //    NSInteger index = [formalName rangeOfString:@";"].location;
+    //
+    //    NSString *lastName = [formalName substringToIndex:index];
+    //    NSString *firstName = [formalName substringFromIndex:index + 2];
+    //
+    //    return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
     
     return formalName;
 }
@@ -400,7 +362,7 @@ NSString *convertFormalName(NSString * formalName) {
         /*
          Replace this implementation with code to handle the error appropriately.
          
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
          
          Typical reasons for an error here include:
          * The persistent store is not accessible;
@@ -414,7 +376,7 @@ NSString *convertFormalName(NSString * formalName) {
          * Simply deleting the existing store:
          [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
          
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter: 
+         * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
          [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
          
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
@@ -422,7 +384,7 @@ NSString *convertFormalName(NSString * formalName) {
          */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
-    }    
+    }
     
     return __persistentStoreCoordinator;
 }
