@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06EB976F16F2964A0057E175 /* ballsack.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06EB976E16F2964A0057E175 /* ballsack.storyboard */; };
 		06F6091E16DC60810078A1D6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F6091D16DC60810078A1D6 /* Default-568h@2x.png */; };
 		152044B616D8203A00BB442B /* JSON import.m in Sources */ = {isa = PBXBuildFile; fileRef = 152044B516D8203A00BB442B /* JSON import.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7B36978B15BF1FB9003F84BC /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B36978A15BF1FB9003F84BC /* Teacher.m */; };
@@ -142,6 +143,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06EB976E16F2964A0057E175 /* ballsack.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ballsack.storyboard; path = "../../Project Mango Gamma Release/ballsack.storyboard"; sourceTree = "<group>"; };
 		06F6091D16DC60810078A1D6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		152044B416D8203A00BB442B /* JSON import.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSON import.h"; sourceTree = "<group>"; };
 		152044B516D8203A00BB442B /* JSON import.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSON import.m"; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 		7B95E4B015BF00C70082E724 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				06EB976E16F2964A0057E175 /* ballsack.storyboard */,
 				7B95E4C015BF0E580082E724 /* Project_Mango.xcdatamodeld */,
 				7BE19BBF15EF286800EDCAFC /* Student.h */,
 				7BE19BC015EF286800EDCAFC /* Student.m */,
@@ -823,6 +826,7 @@
 				7BAB46DA15D5BD2F00A76D7E /* notesdoneactive.png in Resources */,
 				7BE19BBA15EF0C3C00EDCAFC /* studentschedules2012.json in Resources */,
 				06F6091E16DC60810078A1D6 /* Default-568h@2x.png in Resources */,
+				06EB976F16F2964A0057E175 /* ballsack.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
