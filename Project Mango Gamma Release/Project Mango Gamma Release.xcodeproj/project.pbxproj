@@ -16,7 +16,6 @@
 		E39D761416E034AE00E7ABC6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E39D761316E034AE00E7ABC6 /* Default.png */; };
 		E39D761616E034AE00E7ABC6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39D761516E034AE00E7ABC6 /* Default@2x.png */; };
 		E39D761816E034AE00E7ABC6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39D761716E034AE00E7ABC6 /* Default-568h@2x.png */; };
-		E39D762316E034EC00E7ABC6 /* ballsack.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E39D762216E034EC00E7ABC6 /* ballsack.storyboard */; };
 		E39D762816E035DA00E7ABC6 /* ZBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E39D762716E035DA00E7ABC6 /* ZBarViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +33,6 @@
 		E39D761316E034AE00E7ABC6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E39D761516E034AE00E7ABC6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E39D761716E034AE00E7ABC6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E39D762216E034EC00E7ABC6 /* ballsack.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ballsack.storyboard; path = ../ballsack.storyboard; sourceTree = "<group>"; };
 		E39D762616E035DA00E7ABC6 /* ZBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZBarViewController.h; path = ../ZBarViewController.h; sourceTree = "<group>"; };
 		E39D762716E035DA00E7ABC6 /* ZBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZBarViewController.m; path = ../ZBarViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,7 +83,6 @@
 			children = (
 				E39D762616E035DA00E7ABC6 /* ZBarViewController.h */,
 				E39D762716E035DA00E7ABC6 /* ZBarViewController.m */,
-				E39D762216E034EC00E7ABC6 /* ballsack.storyboard */,
 				E39D761016E034AE00E7ABC6 /* AppDelegate.h */,
 				E39D761116E034AE00E7ABC6 /* AppDelegate.m */,
 				E39D760816E034AE00E7ABC6 /* Supporting Files */,
@@ -162,7 +159,6 @@
 				E39D761416E034AE00E7ABC6 /* Default.png in Resources */,
 				E39D761616E034AE00E7ABC6 /* Default@2x.png in Resources */,
 				E39D761816E034AE00E7ABC6 /* Default-568h@2x.png in Resources */,
-				E39D762316E034EC00E7ABC6 /* ballsack.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
