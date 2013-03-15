@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="O4m-ii-UQX">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="FNf-HD-WDx">
+            <objects>
+                <viewController id="O4m-ii-UQX" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gqa-cb-tAG">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uP-J5-LZQ">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="144" id="BKX-fv-zI5"/>
+                                    <constraint firstAttribute="height" constant="144" id="TVW-ps-p7F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Scan Your Card!">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="NWk-D2-yzq" kind="modal" id="nib-XK-uJc"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CYY-S1-kPL">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="106" id="GLe-pV-5v8"/>
+                                    <constraint firstAttribute="width" constant="240" id="L1e-1g-Omh"/>
+                                </constraints>
+                                <string key="text">Welcome to the HM App! To get started, please press the Scan button and take a picture of the barcode on your School Issued ID card.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0uP-J5-LZQ" firstAttribute="top" secondItem="gqa-cb-tAG" secondAttribute="top" constant="262" id="4zD-LY-Qwb"/>
+                            <constraint firstItem="CYY-S1-kPL" firstAttribute="centerX" secondItem="gqa-cb-tAG" secondAttribute="centerX" type="default" id="MMC-5I-NYX"/>
+                            <constraint firstItem="CYY-S1-kPL" firstAttribute="top" secondItem="gqa-cb-tAG" secondAttribute="top" constant="117" id="bar-TM-JQh"/>
+                            <constraint firstItem="0uP-J5-LZQ" firstAttribute="centerX" secondItem="CYY-S1-kPL" secondAttribute="centerX" type="default" id="bt1-XX-evK"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bx6-M1-PfV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1135" y="-718"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="r4v-Ql-Cv0">
+            <objects>
+                <viewController id="Aha-TX-eyA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LuO-U1-hxt">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ts8-uQ-VtT">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="gb8-wO-ztZ" kind="modal" id="jTK-P2-mg9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ts8-uQ-VtT" firstAttribute="top" secondItem="LuO-U1-hxt" secondAttribute="top" constant="40" id="K4X-lp-4lY"/>
+                            <constraint firstAttribute="trailing" secondItem="Ts8-uQ-VtT" secondAttribute="trailing" constant="32" id="ZOy-KS-g3Z"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YBY-l2-Nfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-296" y="589"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yVn-ac-Wj4">
+            <objects>
+                <viewController id="gwt-4N-b9G" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nVF-a5-zUH">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9qD-8T-bc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-831" y="170"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="RdM-Qh-fQC">
+            <objects>
+                <viewController id="peH-JC-bOt" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aXP-sT-5ZV">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WgU-gU-7P1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="436" y="-271"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vxK-PZ-RJf">
+            <objects>
+                <viewController id="NWk-D2-yzq" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NV5-Rn-cKx">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fFE-SZ-2dT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-376" y="-1111"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="A0f-i2-CWN">
+            <objects>
+                <viewController id="r9D-Y3-ehp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J4v-V3-Sby">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wd7-0I-ATE">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Not You? Click here">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="O4m-ii-UQX" kind="modal" id="t1S-Zq-SwI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vRP-kC-QGI">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="144" id="VAm-SK-Y60"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="XXX? Click here">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="gb8-wO-ztZ" kind="modal" id="9BI-Rl-jiM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Wd7-0I-ATE" firstAttribute="centerX" secondItem="J4v-V3-Sby" secondAttribute="centerX" type="default" id="EmQ-Aa-WUG"/>
+                            <constraint firstAttribute="bottom" secondItem="Wd7-0I-ATE" secondAttribute="bottom" constant="40" id="glr-T8-a6x"/>
+                            <constraint firstItem="vRP-kC-QGI" firstAttribute="centerX" secondItem="Wd7-0I-ATE" secondAttribute="centerX" type="default" id="pFM-1G-FN2"/>
+                            <constraint firstItem="vRP-kC-QGI" firstAttribute="top" secondItem="J4v-V3-Sby" secondAttribute="top" constant="219" id="ttx-eX-JH2"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pck-44-o8d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="244" y="-1012"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="oDk-bj-xKv">
+            <objects>
+                <viewController id="gb8-wO-ztZ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MSh-bi-EQS">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNl-OL-Bmf">
+                                <items>
+                                    <barButtonItem title="Slider" id="Qwp-ej-DSI"/>
+                                    <barButtonItem title="Settings" width="73" id="9GC-Ct-3Ky">
+                                        <connections>
+                                            <segue destination="peH-JC-bOt" kind="modal" id="b7M-MU-SNy"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PNl-OL-Bmf" firstAttribute="trailing" secondItem="MSh-bi-EQS" secondAttribute="trailing" type="default" id="2dT-ls-S00"/>
+                            <constraint firstItem="PNl-OL-Bmf" firstAttribute="leading" secondItem="MSh-bi-EQS" secondAttribute="leading" type="default" id="Da0-ka-bvU"/>
+                            <constraint firstItem="PNl-OL-Bmf" firstAttribute="top" secondItem="MSh-bi-EQS" secondAttribute="top" type="default" id="Rdn-jq-HcX"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tEx-Vh-EQi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-268" y="-210"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="9BI-Rl-jiM"/>
+    </inferredMetricsTieBreakers>
+</document>
