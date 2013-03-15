@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2959A63716F2A2AF00522D3F /* UINavigationItem+JTRevealSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2959A63616F2A2AE00522D3F /* UINavigationItem+JTRevealSidebar.m */; };
 		E39D760216E034AE00E7ABC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39D760116E034AE00E7ABC6 /* UIKit.framework */; };
 		E39D760416E034AE00E7ABC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39D760316E034AE00E7ABC6 /* Foundation.framework */; };
 		E39D760616E034AE00E7ABC6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39D760516E034AE00E7ABC6 /* CoreGraphics.framework */; };
@@ -20,6 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2959A63316F2A14200522D3F /* Sidebarheader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Sidebarheader.h; path = ../Sidebarheader.h; sourceTree = "<group>"; };
+		2959A63416F2A18D00522D3F /* UINavigationItem+JTRevealSidebarV2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UINavigationItem+JTRevealSidebarV2.h"; path = "../UINavigationItem+JTRevealSidebarV2.h"; sourceTree = "<group>"; };
+		2959A63516F2A2AE00522D3F /* UINavigationItem+JTRevealSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationItem+JTRevealSidebar.h"; path = "../UINavigationItem+JTRevealSidebar.h"; sourceTree = "<group>"; };
+		2959A63616F2A2AE00522D3F /* UINavigationItem+JTRevealSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationItem+JTRevealSidebar.m"; path = "../UINavigationItem+JTRevealSidebar.m"; sourceTree = "<group>"; };
+		2959A63816F2A2FE00522D3F /* moresidebar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moresidebar.h; sourceTree = "<group>"; };
 		E39D75FD16E034AE00E7ABC6 /* Project Mango Gamma Release.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project Mango Gamma Release.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E39D760116E034AE00E7ABC6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E39D760316E034AE00E7ABC6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -85,6 +91,11 @@
 				E39D762716E035DA00E7ABC6 /* ZBarViewController.m */,
 				E39D761016E034AE00E7ABC6 /* AppDelegate.h */,
 				E39D761116E034AE00E7ABC6 /* AppDelegate.m */,
+				2959A63316F2A14200522D3F /* Sidebarheader.h */,
+				2959A63416F2A18D00522D3F /* UINavigationItem+JTRevealSidebarV2.h */,
+				2959A63516F2A2AE00522D3F /* UINavigationItem+JTRevealSidebar.h */,
+				2959A63616F2A2AE00522D3F /* UINavigationItem+JTRevealSidebar.m */,
+				2959A63816F2A2FE00522D3F /* moresidebar.h */,
 				E39D760816E034AE00E7ABC6 /* Supporting Files */,
 			);
 			path = "Project Mango Gamma Release";
@@ -172,6 +183,7 @@
 				E39D760E16E034AE00E7ABC6 /* main.m in Sources */,
 				E39D761216E034AE00E7ABC6 /* AppDelegate.m in Sources */,
 				E39D762816E035DA00E7ABC6 /* ZBarViewController.m in Sources */,
+				2959A63716F2A2AF00522D3F /* UINavigationItem+JTRevealSidebar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
